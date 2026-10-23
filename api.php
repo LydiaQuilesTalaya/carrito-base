@@ -7,7 +7,7 @@ header('Content-Type: application/json; charset=utf-8');
   "products": [
     {
       "SKU": "0K3QOSOV4V",
-      "title": "iFhone 13 Pro",
+      "title": "iPhone 13 Pro",
       "price": "938.99"
     },
     {

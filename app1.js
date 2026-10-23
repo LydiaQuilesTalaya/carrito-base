@@ -81,8 +81,8 @@ function mostrar() {
     const cantidad = fila.querySelector("input");
     cantidad.addEventListener("input", (evento) => {
       const soloDigitos = evento.target.value.replace(/\D/g, "");
-      //evento.target.value = soloDigitos.replace(/^0+(?=\d)/, "");
       if (evento.target.value !== soloDigitos) evento.target.value = soloDigitos;
+       evento.target.value = Number(String(evento.target.value).slice(0));
     });
 
     //NUEVO: Actualizamos el carrito.
