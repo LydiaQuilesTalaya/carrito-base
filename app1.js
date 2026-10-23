@@ -38,10 +38,23 @@ function dinero(numero) {
   return numero.toFixed(2) + " " + carrito.moneda;
 }
 
+//NUEVO: Función para mostrar el resumen del carrito cuando escribimos en el input de cantidad.
+function mostrarResumen() {
+  const datos = carrito.obtenerCarrito();
+  resumen.replaceChildren();
+  for (const producto of datos.products) {
+    const item = document.createElement("li");
+    item.textContent = `${producto.quantity} x ${producto.title}: ${dinero(producto.subtotal)}`;
+    resumen.append(item);
+  }
+  total.textContent = dinero(datos.total);
+}
+
+
+
 // Una sola función dibuja toda la pantalla.
 function mostrar() {
   tabla.replaceChildren();
-  resumen.replaceChildren();
 
   for (const producto of carrito.productos) {
     const fila = document.createElement("tr");
@@ -49,7 +62,7 @@ function mostrar() {
       <td><strong></strong><small></small></td>
       <td class="cantidad">
         <button type="button" class="menos" aria-label="Quitar una unidad">−</button>
-        <input type="text" readonly aria-label="Cantidad">
+        <input type="text" inputmode="numeric" value="0" aria-label="Cantidad">
         <button type="button" class="mas" aria-label="Añadir una unidad">+</button>
       </td>
       <td class="precio"></td><td class="subtotal"></td>
@@ -62,15 +75,26 @@ function mostrar() {
     fila.querySelector(".menos").onclick = () => cambiar(producto.SKU, -1);
     fila.querySelector(".mas").onclick = () => cambiar(producto.SKU, 1);
     tabla.append(fila);
+
+    //NUEVO: Sólo vamos a permitir dígitos en el input de cantidad y cuando el usuario introduzca 
+    //un número, se eliminará el cero para no mostrar cifras como 01.
+    const cantidad = fila.querySelector("input");
+    cantidad.addEventListener("input", (evento) => {
+      const soloDigitos = evento.target.value.replace(/\D/g, "");
+      //evento.target.value = soloDigitos.replace(/^0+(?=\d)/, "");
+      if (evento.target.value !== soloDigitos) evento.target.value = soloDigitos;
+    });
+
+    //NUEVO: Actualizamos el carrito.
+    cantidad.addEventListener("input", () => {
+      const unidades = Math.max(0, parseInt(cantidad.value, 10) || 0);
+      carrito.actualizarUnidades(producto.SKU, unidades);
+      fila.querySelector(".subtotal").textContent = dinero(producto.subtotal);
+      mostrarResumen();
+    });
   }
 
-  const datos = carrito.obtenerCarrito();
-  for (const producto of datos.products) {
-    const li = document.createElement("li");
-    li.textContent = `${producto.quantity} × ${producto.title}: ${dinero(producto.subtotal)}`;
-    resumen.append(li);
-  }
-  total.textContent = dinero(datos.total);
+  mostrarResumen();
 }
 
 // Cada botón cambia una cantidad y vuelve a dibujar la pantalla.
