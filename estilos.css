@@ -11,11 +11,19 @@ body {
 header { border-bottom: 1px solid #ddd; }
 h1 { font-size: 28px; }
 h2 { margin-top: 0; font-size: 20px; }
-#estado {
+#estado.correcto {
   color: #245b36;
   background: #eaf6ed;
   padding: 12px 16px;
   border-left: 4px solid #3a9b5b;
+  border-radius: 4px;
+  font-weight: bold;
+}
+#estado.error {
+  color: #8a1c1c;
+  background: #fde8e7;
+  padding: 12px 16px;
+  border-left: 4px solid #c62828;
   border-radius: 4px;
   font-weight: bold;
 }

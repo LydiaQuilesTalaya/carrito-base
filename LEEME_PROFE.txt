@@ -8,7 +8,7 @@ el usuario ponga un 0 delante, para no ver cifras como: 05. Tampoco permitimos
 que el usuario introduzca algo que no sea un número.
 
 2) En el área de TOTAL, he introducido un nuevo gasto: Los gastos de envío.
-Cuando el total supere los 50€, en lugar de sumarle 5.99€ de gastos de envío,
+Cuando el total llegue o supere los 50€, en lugar de sumarle 5.99€ de gastos de envío,
 le pondrá el texto 'gratis' y no le contará los gastos.
 
 3) En la parte superior, hay un pequeño anuncio de gastos de envío gratis a
@@ -22,4 +22,6 @@ que desaparezca esa fila. Al recargar la página, volverán a aparecer los artí
 eliminados.
 
 6) Al iniciar la web, tenemos 1 unidad de cada producto.
+
+7) Cuando la api falla, mostramos el mensaje de error en rojo.
 

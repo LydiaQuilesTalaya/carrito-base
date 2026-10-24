@@ -125,6 +125,7 @@ function cambiar(sku, cambio) {
 
 //Pedimos los productos e iniciamos el carrito.
 const URL_API = "api.php";
+//const URL_API = "api-inexistente.php"; //Para fingir el error de la API.
 
 async function iniciar() {
   try {
@@ -133,8 +134,12 @@ async function iniciar() {
     const datos = await respuesta.json();
     carrito = new Carrito(datos.products, datos.currency);
     mostrar();
+    estado.classList.remove("error");
+    estado.classList.add("correcto");
     estado.textContent = "🚚 Envío gratis en pedidos de 50 € o más";
   } catch (error) {
+    estado.classList.remove("correcto");
+    estado.classList.add("error");
     estado.textContent = "No se pudieron cargar los productos: " + error.message;
   }
 }

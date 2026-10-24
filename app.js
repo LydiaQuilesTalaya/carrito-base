@@ -117,7 +117,7 @@ async function iniciar() {
     carrito = new Carrito(datos.products, datos.currency);
     mostrarProductos();
     mostrarResumen();
-    estado.textContent = "🚚 Envío gratis en pedidos de 50 € o más";
+    estado.textContent = "Productos cargados. Usa − y + para cambiar las unidades.";
   } catch (error) {
     estado.textContent = "No se pudieron cargar los productos: " + error.message;
   }
