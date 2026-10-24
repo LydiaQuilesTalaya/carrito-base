@@ -5,8 +5,8 @@ class Carrito {
     this.moneda = moneda;
     for (const producto of productos) {
       producto.price = Number(producto.price);
-      producto.quantity = 0;
-      producto.subtotal = 0;
+      producto.quantity = 1;
+      producto.subtotal = Number((producto.price * producto.quantity).toFixed(2));
     }
   }
 

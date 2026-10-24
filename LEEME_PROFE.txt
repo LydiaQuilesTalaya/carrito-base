@@ -3,8 +3,9 @@ BESTDEAL - WEB CARRITO BASADA EN AGOODSHOP
 AQUÍ ESCRIBIRÉ LAS NOVEDADES QUE HE INTRODUCIDO.
 
 1) El usuario puede introducir unidades haciendo clic en el input y
-escribiendo con el teclado. Además, al introducir un número, se eliminará
-el primer dígito (que es un 0) para no visualizar cifras como: 05, 012...
+escribiendo con el teclado. Además, al introducir un número, no se permitirá que
+el usuario ponga un 0 delante, para no ver cifras como: 05. Tampoco permitimos
+que el usuario introduzca algo que no sea un número.
 
 2) En el área de TOTAL, he introducido un nuevo gasto: Los gastos de envío.
 Cuando el total supere los 50€, en lugar de sumarle 5.99€ de gastos de envío,
@@ -19,4 +20,6 @@ partir de 50€, con el objetivo de promover que el usuario gaste más.
 Usaría un endpoint para eliminar el artículo, pero puesto que no tenemos, haremos
 que desaparezca esa fila. Al recargar la página, volverán a aparecer los artículos
 eliminados.
+
+6) Al iniciar la web, tenemos 1 unidad de cada producto.
 
