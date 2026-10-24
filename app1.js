@@ -41,6 +41,7 @@ function dinero(numero) {
 //NUEVO: Función para mostrar el resumen del carrito cuando escribimos en el input de cantidad.
 function mostrarResumen() {
   const datos = carrito.obtenerCarrito();
+  mostrarYCalcularGastosEnvio(datos);
   resumen.replaceChildren();
   for (const producto of datos.products) {
     const item = document.createElement("li");
@@ -50,7 +51,13 @@ function mostrarResumen() {
   total.textContent = dinero(datos.total);
 }
 
-
+function mostrarYCalcularGastosEnvio(datos) {
+  const gastosEnvio = document.querySelector("#gastosEnvio");
+  gastosEnvio.textContent = datos.total > 50 ? "Gratis" : "5.99 €";
+  if (datos.total < 50) {
+    datos.total += 5.99;
+  }
+}
 
 // Una sola función dibuja toda la pantalla.
 function mostrar() {
@@ -59,6 +66,7 @@ function mostrar() {
   for (const producto of carrito.productos) {
     const fila = document.createElement("tr");
     fila.innerHTML = `
+      <td><img class="imagenProducto" alt=""></td>
       <td><strong></strong><small></small></td>
       <td class="cantidad">
         <button type="button" class="menos" aria-label="Quitar una unidad">−</button>
@@ -66,7 +74,11 @@ function mostrar() {
         <button type="button" class="mas" aria-label="Añadir una unidad">+</button>
       </td>
       <td class="precio"></td><td class="subtotal"></td>
+      <td><button type="button" class="eliminar" aria-label="Quitar del carrito">🗑️</button></td>
     `;
+    const imagen = fila.querySelector(".imagenProducto");
+    imagen.src = producto.image;
+    imagen.alt = producto.title;
     fila.querySelector("strong").textContent = producto.title;
     fila.querySelector("small").textContent = "REF: " + producto.SKU;
     fila.querySelector("input").value = producto.quantity;
@@ -92,6 +104,13 @@ function mostrar() {
       fila.querySelector(".subtotal").textContent = dinero(producto.subtotal);
       mostrarResumen();
     });
+
+    fila.querySelector(".eliminar").addEventListener("click", () => {
+    carrito.productos = carrito.productos.filter(
+    articulo => articulo.SKU !== producto.SKU
+  );
+  mostrar();
+});
   }
 
   mostrarResumen();

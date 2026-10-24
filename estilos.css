@@ -11,7 +11,6 @@ body {
 header { border-bottom: 1px solid #ddd; }
 h1 { font-size: 28px; }
 h2 { margin-top: 0; font-size: 20px; }
-/*#estado { min-height: 24px; color: #555; }*/
 #estado {
   color: #245b36;
   background: #eaf6ed;
@@ -34,6 +33,12 @@ aside { width: 290px; padding: 22px; background: #f3f3f3; }
 ul { padding: 0; list-style: none; }
 li { margin: 15px 0; }
 .total { display: flex; justify-content: space-between; border-top: 1px solid #aaa; padding-top: 18px; }
+.imagenProducto {
+  display: block;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
 
 @media (max-width: 800px) {
   main { flex-direction: column; }

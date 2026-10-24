@@ -1,0 +1,22 @@
+BESTDEAL - WEB CARRITO BASADA EN AGOODSHOP
+
+AQUÍ ESCRIBIRÉ LAS NOVEDADES QUE HE INTRODUCIDO.
+
+1) El usuario puede introducir unidades haciendo clic en el input y
+escribiendo con el teclado. Además, al introducir un número, se eliminará
+el primer dígito (que es un 0) para no visualizar cifras como: 05, 012...
+
+2) En el área de TOTAL, he introducido un nuevo gasto: Los gastos de envío.
+Cuando el total supere los 50€, en lugar de sumarle 5.99€ de gastos de envío,
+le pondrá el texto 'gratis' y no le contará los gastos.
+
+3) En la parte superior, hay un pequeño anuncio de gastos de envío gratis a
+partir de 50€, con el objetivo de promover que el usuario gaste más.
+
+4) En cada producto añadido al carrito, se ha añadido la imagen correspondiente.
+
+5) Se ha puesto una papelera en cada artículo para poder eliminarlos.
+Usaría un endpoint para eliminar el artículo, pero puesto que no tenemos, haremos
+que desaparezca esa fila. Al recargar la página, volverán a aparecer los artículos
+eliminados.
+
